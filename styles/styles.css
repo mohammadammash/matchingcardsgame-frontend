@@ -10,7 +10,7 @@ body {
   align-items: center;
   justify-content: space-evenly;
   height: 100vh;
-  margin-top:0;
+  margin-top: 0;
 }
 
 .cards {
@@ -70,3 +70,26 @@ body {
   transform: rotateY(180deg);
 }
 
+/* styling the score-show div */
+.score-show {
+  font-size: 25px;
+  display: block;
+}
+.score-show span {
+  font-style: italic;
+  font-size: 28px;
+}
+.restart-btn {
+  padding: 5px 25px;
+  font-size: 14px;
+  border-radius: 12px;
+  border: 1px solid;
+  color: white;
+  text-transform: capitalize;
+  cursor: pointer;
+  background: linear-gradient(
+    112.1deg,
+    rgb(130, 130, 130) 11.4%,
+    rgb(11, 11, 11) 70.2%
+  );
+}
