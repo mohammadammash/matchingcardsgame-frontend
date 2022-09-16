@@ -3,13 +3,11 @@ const logos = document.getElementsByClassName("programming-logo");
 
 let hasFlippedCard = false;
 let firstCard, secondCard;
-let [matches, flippedCards] = [0, 0];
 let score = 0;
 
 function flipCard() {
   // add class flipCard to the card clicked(flip-it to show logo)
   this.childNodes[1].classList.add("flip-card");
-  flippedCards += 1;
   let firstCard_imgsrc, secondCard_imgsrc;
 
   if (!hasFlippedCard) {
@@ -22,18 +20,21 @@ function flipCard() {
     secondCard = this;
     secondCard_imgsrc = this.childNodes[1].childNodes[3].childNodes[1].src;
     
-    // if cards matches: (score + 1 and remove event listener so the user cannot cheat)
+    //after second flip:
+    // if cards matches: (score + 1 and hide cards)
     if (firstCard_imgsrc === secondCard_imgsrc) {
       firstCard.removeEventListener("click", flipCard);
       secondCard.removeEventListener("click", flipCard);
+      score+=1;
     } else {
-      //not a match
-      firstCard.childNodes[1].classList.remove("flip-card");
-      firstCard.childNodes[1].classList.remove("flip-card");
+      //not a match - setTimeout to reflip cards after 1.8 seconds, so user can view both cards
+      setTimeout(()=>{
+        firstCard.childNodes[1].classList.remove("flip-card");
+      secondCard.childNodes[1].classList.remove("flip-card");
       console.log("oops");
+      },1800);
     }
 
-    if (flippedCards == 6) resetGame();
     hasFlippedCard = false; //reset the comparison
   }
 }
