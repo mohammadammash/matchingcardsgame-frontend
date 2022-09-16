@@ -21,7 +21,20 @@ function flipCard() {
     //second flip
     secondCard = this;
     secondCard_imgsrc = this.childNodes[1].childNodes[3].childNodes[1].src;
+    
+    // if cards matches: (score + 1 and remove event listener so the user cannot cheat)
+    if (firstCard_imgsrc === secondCard_imgsrc) {
+      firstCard.removeEventListener("click", flipCard);
+      secondCard.removeEventListener("click", flipCard);
+    } else {
+      //not a match
+      firstCard.childNodes[1].classList.remove("flip-card");
+      firstCard.childNodes[1].classList.remove("flip-card");
+      console.log("oops");
+    }
 
+    if (flippedCards == 6) resetGame();
+    hasFlippedCard = false; //reset the comparison
   }
 }
 
