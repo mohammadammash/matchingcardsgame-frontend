@@ -9,8 +9,8 @@ let flippedNow = false;
 
 function flipCard() {
   // add class flipCard to the card clicked(flip-it to show logo)
-if(!flippedNow){  
-  this.childNodes[1].classList.add("flip-card");
+  if (!flippedNow) {
+    this.childNodes[1].classList.add("flip-card");
     if (!hasFlippedCard) {
       // first flip
       hasFlippedCard = true;
@@ -23,9 +23,13 @@ if(!flippedNow){
 
       // if cards matches: (score + 1 and remove event listener so the user cannot cheat)
       if (firstCard_imgsrc === secondCard_imgsrc) {
-        firstCard.removeEventListener("click", flipCard);
-        secondCard.removeEventListener("click", flipCard);
+        flippedNow = true;
+        setTimeout(() => {
+        firstCard.childNodes[1].classList.add('display-none');
+        secondCard.childNodes[1].classList.add('display-none')
         score += 1;
+        flippedNow = false;
+        },1800);
       } else {
         //not a match - setTimeout to reflip cards after specific time, so user can view both cards
         flippedNow = true;
@@ -33,10 +37,10 @@ if(!flippedNow){
           firstCard.childNodes[1].classList.remove("flip-card");
           secondCard.childNodes[1].classList.remove("flip-card");
           flippedNow = false;
+          score-=2;
         }, 1500);
       }
 
-      console.log(score);
       hasFlippedCard = false; //reset the comparison
     }
   }

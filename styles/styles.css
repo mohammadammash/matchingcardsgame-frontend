@@ -1,15 +1,20 @@
-/* main - all cards container */
-body{
-    display: flex;
-    justify-content: center;
+/* utilites */
+.display-none {
+  display: none;
 }
 
-.cards{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: center;
-    width: 80%;
-    gap:2em;
+/* main - all cards container */
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  width: 80%;
+  gap: 2em;
 }
 
 .card {
@@ -31,12 +36,13 @@ body{
 }
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
-.flip-card{
+.flip-card {
   transform: rotateY(180deg);
 }
 
 /* Position the front and back side */
-.card-front, .card-back {
+.card-front,
+.card-back {
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -47,8 +53,8 @@ body{
   -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
 }
-.card-front img{
-  width:200px;
+.card-front img {
+  width: 200px;
 }
 /* Style the front side bg */
 .card-front {
