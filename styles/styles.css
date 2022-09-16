@@ -11,6 +11,7 @@ body {
   justify-content: space-evenly;
   height: 100vh;
   margin-top: 0;
+  background-color: #3c3c3c;
 }
 
 .cards {
@@ -24,7 +25,6 @@ body {
   background-color: transparent;
   width: 300px;
   height: 300px;
-  border: 1px solid #f1f1f1;
   perspective: 1000px; /* for 3D Effect */
 }
 
@@ -57,16 +57,24 @@ body {
   backface-visibility: hidden;
 }
 .card-front img {
-  width: 200px;
+  width: 150px;
 }
 /* Style the front side bg */
 .card-front {
-  background-color: black;
+  background: linear-gradient(
+    112.1deg,
+    rgb(255, 255, 255) 11.4%,
+    rgb(160, 160, 160) 70.2%
+  );
 }
 
 /* Style the back side */
 .card-back {
-  color: black;
+  background: linear-gradient(
+    112.1deg,
+    rgb(255, 255, 255) 11.4%,
+    rgb(100, 100, 100) 70.2%
+  );
   transform: rotateY(180deg);
 }
 
@@ -74,6 +82,7 @@ body {
 .score-show {
   font-size: 25px;
   display: block;
+  color:  white;
 }
 .score-show span {
   font-style: italic;
@@ -83,13 +92,12 @@ body {
   padding: 5px 25px;
   font-size: 14px;
   border-radius: 12px;
-  border: 1px solid;
   color: white;
   text-transform: capitalize;
   cursor: pointer;
   background: linear-gradient(
     112.1deg,
-    rgb(130, 130, 130) 11.4%,
+    rgb(125, 125, 125) 11.4%,
     rgb(11, 11, 11) 70.2%
   );
 }
