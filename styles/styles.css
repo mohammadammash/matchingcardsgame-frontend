@@ -1,0 +1,45 @@
+/* main - all cards container */
+body{
+    display: flex;
+    justify-content: center;
+}
+
+.cards{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    width: 80%;
+    gap:2em;
+}
+
+.card {
+  background-color: transparent;
+  width: 300px;
+  height: 300px;
+  border: 3px solid #f1f1f1;
+  perspective: 1000px; /* for 3D Effect */
+}
+
+/* This container is needed to have position relative, in order to position the card sides as absolute to the same card */
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
