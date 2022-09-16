@@ -19,12 +19,15 @@ function flipCard() {
       // first flip (saving card main div and card-back image source)
       hasFlippedCard = true;
       firstCard = this;
-      // to remove same image double click
+      // to remove possibility of same image double click win cheat:
+      firstCard.removeEventListener("click", flipCard);
       firstCard_imgsrc = this.childNodes[1].childNodes[3].childNodes[1].src;
     } else {
       //second flip (saving card main div and card-back image source)
       secondCard = this;
       secondCard_imgsrc = this.childNodes[1].childNodes[3].childNodes[1].src;
+      //readd Event listener to removedCard
+      firstCard.addEventListener("click", flipCard);
 
       // if cards matches: (score + 1 and remove event listener so the user cannot cheat)
       if (firstCard_imgsrc === secondCard_imgsrc) {
@@ -64,39 +67,40 @@ for (let c of cards) c.addEventListener("click", flipCard);
 
 // ---------------
 // -----START OF RESET SECTION-----
-// const shuffleImages = () => {
-//   const images = [
-//     "./assets/java.png",
-//     "./assets/php.png",
-//     "./assets/python.png",
-//     "./assets/java.png",
-//     "./assets/python.png",
-//     "./assets/php.png",
-//   ];
-//   for (let i = images.length; i > 1; i--) {
-//     // Pick random element to swap.
-//     var j = Math.ceil(Math.random() * (i - 1));
-//     var tmp = images[j];
-//     images[j] = images[i - 1];
-//     images[i - 1] = tmp;
-//   }
-//   // change image/logo according to new shuffled array
-//   let i = 0;
-//   for (let image of allLogos) image.src = images[i];
-// };
+const shuffleImages = () => {
+  const images = [
+    "./assets/java.png",
+    "./assets/php.png",
+    "./assets/python.png",
+    "./assets/java.png",
+    "./assets/python.png",
+    "./assets/php.png",
+  ];
+  for (let i = images.length; i > 1; i--) {
+    // Pick random element to swap.
+    var j = Math.ceil(Math.random() * (i - 1));
+    var tmp = images[j];
+    images[j] = images[i - 1];
+    images[i - 1] = tmp;
+  }
+  // change image/logo according to new shuffled array
+  let i = 0;
+  for (let image of allLogos) {
+    image.src = images[i];
+    i += 1;
+  }
+};
 
-// const resetGame = () => {
-//   //make sure all cards are flipped
-//   for (let c of cards) {
-//     // cannot use arrow-function with this => replaced by namedFunction
-//     c.addEventListener("click", function () {
-//       this.childNodes[1].classList.remove("flip-card");
-//       // reshow hidden images
-//       this.childNodes[1].classList.remove('display-none');
-//     });
-//   }
-//   // shuffleImages();
-// };
+const resetGame = () => {
+  //make sure all cards are flipped
+  for (let c of cards) {
+    c.children[0].classList.remove("flip-card");
+    // reshow hidden images
+    c.children[0].classList.remove("display-none");
+    //shuffle images:
+  }
+  shuffleImages();
+};
 
 // event listener for restart button - to restart images but not score surely :)
-// restartButton.addEventListener("click", resetGame);
+restartButton.addEventListener("click", resetGame);
